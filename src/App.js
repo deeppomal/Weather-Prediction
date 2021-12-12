@@ -1,10 +1,9 @@
 import './App.css';
+import Weather from './weather';
 
 function App() {
   return (
-    <h1>
-      New World Order
-    </h1>
+    <Weather />
   );
 }
 
