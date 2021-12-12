@@ -90,7 +90,7 @@ const Weather = () => {
                                 <p>{data.daily[selected].pressure} hPa</p>
                             </div>
                             <div className="metricCard">
-                                <img  id="metricImg" src={"https://cdn-icons.flaticon.com/png/512/2828/premium/2828802.png?token=exp=1639329542~hmac=c32ae96bbe35449591b9dcc2db1a04f0"} alt="humidity"/>
+                                <img  id="metricImg" src={"https://cdn-icons-png.flaticon.com/512/728/728093.png"} alt="humidity"/>
                                 <p>{data.daily[selected].humidity} %</p>
                             </div>
                             <div className="metricCard">
