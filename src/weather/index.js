@@ -1,6 +1,9 @@
 import {  useEffect, useState } from "react";
 import useFetch from "../util/useFetch";
 import Loader from "react-loader-spinner";
+import WeatherCard from "../components/WeatherCard";
+import WeatherSummary from "../components/WeatherSummary";
+import WeatherMetrics from "../components/WeatherMetrics";
 
 const Weather = () => {
 
@@ -24,15 +27,7 @@ const Weather = () => {
           });
     },[])
     
-    const convertTime=(time)=>{
-
-        var date = new Date(time * 1000);
-        var hours = date.getHours() === 0 ? "12" : date.getHours() > 12 ? date.getHours() - 12 : date.getHours() ;
-        var minutes = "0" + date.getMinutes();
-        var ampm = date.getHours() < 12 ? " AM" : " PM";
-        var formattedTime = hours + ':' + minutes.substr(-2) + ampm;
-        return formattedTime
-    }
+    
 
     return ( 
         <div className="weatherContainer">
@@ -55,52 +50,16 @@ const Weather = () => {
                     {
                         data.daily.map((item,index)=>{
                             return(
-                                <div className={`${selected===index ? "weatherItem weatherItemSelected" : "weatherItem" }`} 
-                                onClick={()=>handleClick(index)} key={index}>
-                                    <p>{item.weather[0].main}</p>
-                                    <img src={"http://openweathermap.org/img/wn/" +item.weather[0].icon+".png"} alt="description"/>
-                                    <div className="temp">
-                                        <p id="celcText">{parseInt(item.temp.max)}°</p>
-                                        <p id="fahText">{parseInt(item.temp.min)}°</p>
-                                    </div>
-                                
-                                </div>
+                                <WeatherCard item={item} index={index} handleClick={handleClick} selected={selected} key={index} />
                             )
                         })
                     }
                     </div>
                     <div className="detailsCard">
-                        <div className="cardDesc">
-                            <img src={"http://openweathermap.org/img/wn/" +data.daily[selected].weather[0].icon+"@2x.png"} alt="description"/>
-                            <p>{data.daily[selected].weather[0].description}</p>
-                        </div>
-                        <div className="metricContainer">
-                            <div className="metricCard">
-                                <img src={"https://cdn-icons-png.flaticon.com/512/787/787604.png"} alt="sunrise"/>
-                                <p>{convertTime(data.daily[selected].sunrise)}</p>
-                            </div>
-                            <div className="metricCard">
-                                <img src={"https://cdn-icons-png.flaticon.com/512/2924/2924900.png"} alt="sunset"/>
-                                <p>{convertTime(data.daily[selected].sunset)}</p>
-                            </div>
-                        </div>
-                        <div className="metricContainer">
-                            <div className="metricCard">
-                                <img id="metricImg" src={"https://cdn-icons-png.flaticon.com/512/1839/1839341.png"} alt="pressure"/>
-                                <p>{data.daily[selected].pressure} hPa</p>
-                            </div>
-                            <div className="metricCard">
-                                <img  id="metricImg" src={"https://cdn-icons-png.flaticon.com/512/728/728093.png"} alt="humidity"/>
-                                <p>{data.daily[selected].humidity} %</p>
-                            </div>
-                            <div className="metricCard">
-                                <img  id="metricImg" src={"https://cdn-icons-png.flaticon.com/512/1375/1375420.png"} alt="windSpeed"/>
-                                <p>{data.daily[selected].wind_speed} m/s</p>
-                            </div>  
-                        </div>
+                        <WeatherSummary data={data} selected={selected} />
+                        <WeatherMetrics data={data} selected={selected} />
                     </div>
                 </div>
-               
             }
         </div>
      );

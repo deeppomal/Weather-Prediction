@@ -7,7 +7,6 @@ const useFetch = (url) => {
 
   useEffect(() => {
     const abortCont = new AbortController();
-    console.log(url)
     fetch(url,{signal:abortCont.signal})
     .then(res => {
       if (!res.ok) { // error coming back from server
