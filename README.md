@@ -1,6 +1,6 @@
 # Weather prediction app
 
-This app shows weather prediction of next 8 days and other useful metrics like :
+This app shows weather prediction of next 8 days based on user's location. It also shows useful metrics like :
 
 1) Maximum and Minimum temperatures
 2) Sunrise and Sunset time
