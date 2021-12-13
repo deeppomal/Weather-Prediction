@@ -1,5 +1,7 @@
 # Weather prediction app
 
+Try it out : https://weather-prediction-react.netlify.app/
+
 This app shows weather prediction of next 8 days based on user's location. It also shows useful metrics like :
 
 1) Maximum and Minimum temperatures
