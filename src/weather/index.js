@@ -13,14 +13,13 @@ const Weather = () => {
     const [lat,setLat] = useState(null)
     const [long,setLong] = useState(null)
 
-    const {data,isPending } = useFetch("https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+long+"&units=metric&appid=ae4aef8516f277e19f6d1b53aa6ab22e")
+    const {data,isPending } = useFetch("https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+long+"&units=metric&appid="+process.env.REACT_APP_API_TOKEN)
     
     const handleClick=(index)=>{
         setSelected(index)
     }
 
     useEffect(()=>{
-        console.log('sd',process.env.REACT_APP_API_TOKEN)
         navigator.geolocation.getCurrentPosition(function(position) {
             setLat(position.coords.latitude);
             setLong(position.coords.longitude);
