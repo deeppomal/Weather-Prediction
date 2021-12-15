@@ -10,8 +10,8 @@ const Weather = () => {
     
 
     const [selected,setSelected] = useState(0);
-    const [lat,setLat] = useState(null)
-    const [long,setLong] = useState(null)
+    const [lat,setLat] = useState("40.7128")
+    const [long,setLong] = useState("74.0060")
 
     const {data,isPending } = useFetch("https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+long+"&units=metric&appid="+process.env.REACT_APP_API_TOKEN)
     
